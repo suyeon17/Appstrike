@@ -41,7 +41,10 @@ if(!isset($_SESSION['login'])) {
 					<br>
 					<textarea class="input-block-level" id="summernote" name="body" rows="18">
 					</textarea>
-					<div style='text-align:center;margin-bottom:20px;'>
+					<div class="form-group">
+						<input type="file" name="file" multiple>
+					</div>
+					<div style='text-align:center;margin-bottom:20px;margin-top:5px;'>
 						<button type="submit" class="btn btn-primary">Submit</button>
 					</div>
 				</form>
