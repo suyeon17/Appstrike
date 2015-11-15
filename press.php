@@ -71,7 +71,7 @@ if ($statement->rowCount() == 0){
 			<div class="span8" style="margin-bottom:35px;">
 			    <h1><?php echo $article['title']; ?></h1>
 			    <p><?php echo $article['text']; ?></p>
-			    <?php if($statementFile->rowCount() > 0) { ?><p><a href="<?php echo $file['path']; ?>">A telecharger</a></p><?php } ?>
+			    <?php if($statementFile->rowCount() > 0) { ?><p><a href="<?php echo $file['path']; ?>" target="_blank">A telecharger</a></p><?php } ?>
 			    <div>
 			        <span class="badge badge-success">Posted <?php echo $article['date']; ?></span><div class="pull-right">
 			        <span class="label"><?php echo $article['login']; ?></span>
