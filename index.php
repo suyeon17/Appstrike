@@ -1,3 +1,12 @@
+<?php
+session_start();
+if(isset($_SESSION['login'])) {
+	$online = true;
+} else {
+	$online = false;
+}
+?>
+
 <html>
 	<head>
 		<title>Busni</title>
@@ -17,7 +26,11 @@
 	        <nav>
 	          <ul class="nav nav-pills pull-right">
 	            <li role="presentation" class="active"><a href="/Newspaper_management/index.php">Home</a></li>
+	            <?php if (!$online){ ?>
 	            <li role="presentation"><a href="/Newspaper_management/admin/login.php">Login</a></li>
+	            <?php } else { ?>
+	            <li role="presentation"><a href="/Newspaper_management/admin/panel.php">Panel</a></li>
+	            <?php } ?>
 	          </ul>
 	        </nav>
 	        <h3 class="text-muted">Busni ` <i style='color:#00612C;'>Articles</i></h3>

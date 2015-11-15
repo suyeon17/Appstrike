@@ -1,3 +1,12 @@
+<?php
+session_start();
+if(!isset($_SESSION['login'])) {
+	// admin not online
+	header("Location: http://localhost/Newspaper_management/admin/login.php");
+	die();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>

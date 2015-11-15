@@ -1,3 +1,12 @@
+<?php
+session_start();
+if(isset($_SESSION['login'])) {
+	// admin online
+	header("Location: http://localhost/Newspaper_management/admin/panel.php");
+	die();
+}
+?>
+
 <html>
 	<head>
 		<title>Busni</title>
@@ -30,14 +39,14 @@
 			    	    <div class="col-xs-12">
 			        	    <div class="form-wrap">
 			                <h1>Log in as an Admin</h1>
-			                    <form role="form" action="javascript:;" method="post" id="login-form" autocomplete="off">
+			                    <form role="form" action="process/login.php" method="post" id="login-form" autocomplete="off">
 			                        <div class="form-group">
 			                            <label for="username" class="sr-only">username</label>
 			                            <input type="text" name="login" id="email" class="form-control" placeholder="Login">
 			                        </div>
 			                        <div class="form-group">
 			                            <label for="key" class="sr-only">Password</label>
-			                            <input type="password" name="key" id="key" class="form-control" placeholder="Password">
+			                            <input type="password" name="password" id="key" class="form-control" placeholder="Password">
 			                        </div>
 			                        <div class="checkbox">
 			                            <span class="character-checkbox" onclick="showPassword()"></span>
