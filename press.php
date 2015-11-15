@@ -1,3 +1,37 @@
+<?php
+session_start();
+if(isset($_SESSION['login'])) {
+	$online = true;
+} else {
+	$online = false;
+}
+
+// no article is selected
+if (!isset($_GET['id'])){
+	header("Location: http://localhost/Newspaper_management/index.php");
+	die();
+}
+
+// try to connect to the database
+try {
+    $pdo = new PDO('mysql:host=localhost;dbname=busni', 'root', '19911991');
+} catch (PDOException $e) {
+    print "Error!: " . $e->getMessage() . "<br/>";
+    die();
+}
+
+// get articles 
+$statement = $pdo->prepare("SELECT * from Articles WHERE id=:id LIMIT 1");
+$statement->bindValue(':id', $_GET['id']);
+$statement->execute();
+$article = $statement->fetch();
+if ($statement->rowCount() == 0){
+	// id have no article
+	header("Location: http://localhost/Newspaper_management/index.php");
+	die();
+}
+?>
+
 <html>
 	<head>
 		<title>Busni</title>
@@ -14,24 +48,25 @@
 	<body>
 		<div class="container">
 			<div class="header clearfix">
-				<nav>
-					<ul class="nav nav-pills pull-right">
-						<li role="presentation" class="active"><a href="/Newspaper_management/index.php">Home</a></li>
-						<li role="presentation"><a href="/Newspaper_management/admin/login.php">Login</a></li>
-					</ul>
-				</nav>
-			<h3 class="text-muted">Busni ` <i style='color:#00612C;'>Article</i></h3>
-			</div>
+	        <nav>
+	          <ul class="nav nav-pills pull-right">
+	            <li role="presentation" class="active"><a href="/Newspaper_management/index.php">Home</a></li>
+	            <?php if (!$online){ ?>
+	            <li role="presentation"><a href="/Newspaper_management/admin/login.php">Login</a></li>
+	            <?php } else { ?>
+	            <li role="presentation"><a href="/Newspaper_management/admin/panel.php">Panel</a></li>
+	            <?php } ?>
+	          </ul>
+	        </nav>
+	        <h3 class="text-muted">Busni ` <i style='color:#00612C;'>Article</i></h3>
+	      </div>
 
 			<div class="span8" style="margin-bottom:35px;">
-			    <h1>Alice in Wonderland, part dos</h1>
-			    <p>'You ought to be ashamed of yourself for asking such a simple question,' added the Gryphon; and then they both sat silent and looked at poor Alice, who felt ready to sink into the earth. At last the Gryphon said to the Mock Turtle, 'Drive on, old fellow! Don't be all day about it!' and he went on in these words:
-			    'Yes, we went to school in the sea, though you mayn't believe it—'
-			    'I never said I didn't!' interrupted Alice.
-			    'You did,' said the Mock Turtle.</p>
+			    <h1><?php echo $article['title']; ?></h1>
+			    <p><?php echo $article['text']; ?></p>
 			    <div>
-			        <span class="badge badge-success">Posted 2012-08-02 20:47:04</span><div class="pull-right">
-			        <span class="label">admin</span>
+			        <span class="badge badge-success">Posted <?php echo $article['date']; ?></span><div class="pull-right">
+			        <span class="label"><?php echo $article['login']; ?></span>
 			    </div>
 			    </div>
 			</div>     	

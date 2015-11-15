@@ -14,27 +14,27 @@
   right: 25px;
   margin-left: -1.5px;
 }
-.timeline > li {
+.timeline > a > li {
   margin-bottom: 20px;
   position: relative;
 }
-.timeline > li:before,
-.timeline > li:after {
+.timeline > a > li:before,
+.timeline > a > li:after {
   content: " ";
   display: table;
 }
-.timeline > li:after {
+.timeline > a > li:after {
   clear: both;
 }
-.timeline > li:before,
-.timeline > li:after {
+.timeline > a > li:before,
+.timeline > a > li:after {
   content: " ";
   display: table;
 }
-.timeline > li:after {
+.timeline > a > li:after {
   clear: both;
 }
-.timeline > li > .timeline-panel {
+.timeline > a > li > .timeline-panel {
   width: calc( 100% - 75px );
   float: left;
   border: 1px solid #d4d4d4;
@@ -44,7 +44,7 @@
   -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
 }
-.timeline > li > .timeline-panel:before {
+.timeline > a > li > .timeline-panel:before {
   position: absolute;
   top: 26px;
   right: -15px;
@@ -55,7 +55,7 @@
   border-bottom: 15px solid transparent;
   content: " ";
 }
-.timeline > li > .timeline-panel:after {
+.timeline > a > li > .timeline-panel:after {
   position: absolute;
   top: 27px;
   right: -14px;
@@ -66,7 +66,7 @@
   border-bottom: 14px solid transparent;
   content: " ";
 }
-.timeline > li > .timeline-badge {
+.timeline > a > li > .timeline-badge {
   color: #fff;
   width: 50px;
   height: 50px;
@@ -84,16 +84,16 @@
   border-bottom-right-radius: 50%;
   border-bottom-left-radius: 50%;
 }
-.timeline > li.timeline-inverted > .timeline-panel {
+.timeline > a > li.timeline-inverted > .timeline-panel {
   float: right;
 }
-.timeline > li.timeline-inverted > .timeline-panel:before {
+.timeline > a > li.timeline-inverted > .timeline-panel:before {
   border-left-width: 0;
   border-right-width: 15px;
   left: -15px;
   right: auto;
 }
-.timeline > li.timeline-inverted > .timeline-panel:after {
+.timeline > a > li.timeline-inverted > .timeline-panel:after {
   border-left-width: 0;
   border-right-width: 14px;
   left: -14px;

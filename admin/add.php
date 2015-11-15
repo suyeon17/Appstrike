@@ -39,7 +39,7 @@ if(!isset($_SESSION['login'])) {
 				<form class="span12" id="postForm" action="process/add_article.php" method="POST" enctype="multipart/form-data" onsubmit="return postForm()">
 					<input type="text" name="title" class="form-control" placeholder="Title">
 					<br>
-					<textarea class="input-block-level" id="summernote" name="content" rows="18">
+					<textarea class="input-block-level" id="summernote" name="body" rows="18">
 					</textarea>
 					<div style='text-align:center;margin-bottom:20px;'>
 						<button type="submit" class="btn btn-primary">Submit</button>
