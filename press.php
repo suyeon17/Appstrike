@@ -20,11 +20,18 @@ try {
     die();
 }
 
-// get articles 
+// get article
 $statement = $pdo->prepare("SELECT * from Articles WHERE id=:id LIMIT 1");
 $statement->bindValue(':id', $_GET['id']);
 $statement->execute();
 $article = $statement->fetch();
+
+// get upload
+$statementFile = $pdo->prepare("SELECT * from Files WHERE article_id=:article_id LIMIT 1");
+$statementFile->bindValue(':article_id', $_GET['id']);
+$statementFile->execute();
+$file = $statementFile->fetch();
+
 if ($statement->rowCount() == 0){
 	// id have no article
 	header("Location: http://localhost/Newspaper_management/index.php");
@@ -50,7 +57,7 @@ if ($statement->rowCount() == 0){
 			<div class="header clearfix">
 	        <nav>
 	          <ul class="nav nav-pills pull-right">
-	            <li role="presentation" class="active"><a href="/Newspaper_management/index.php">Home</a></li>
+	            <li role="presentation"><a href="/Newspaper_management/index.php">Home</a></li>
 	            <?php if (!$online){ ?>
 	            <li role="presentation"><a href="/Newspaper_management/admin/login.php">Login</a></li>
 	            <?php } else { ?>
@@ -64,6 +71,7 @@ if ($statement->rowCount() == 0){
 			<div class="span8" style="margin-bottom:35px;">
 			    <h1><?php echo $article['title']; ?></h1>
 			    <p><?php echo $article['text']; ?></p>
+			    <?php if($statementFile->rowCount() > 0) { ?><p><a href="<?php echo $file['path']; ?>">A telecharger</a></p><?php } ?>
 			    <div>
 			        <span class="badge badge-success">Posted <?php echo $article['date']; ?></span><div class="pull-right">
 			        <span class="label"><?php echo $article['login']; ?></span>

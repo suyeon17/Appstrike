@@ -24,9 +24,33 @@ if (isset($_POST['title']) && isset($_POST['body'])){
 	$query->bindValue(':body', $body);
 	$query->bindValue(':login', $_SESSION['login']);
 	$query->execute();
+	
+	$article_id = $pdo->lastInsertId();
 
-	header("Location: http://localhost/Newspaper_management/index.php");
-	die();
+	// upload file 
+	if(isset($_FILES['file'])) {
+		$target_path  = "/var/www/html/Newspaper_management/admin/uploads/".basename($_FILES['file']['name']);
+		$path = "/Newspaper_management/admin/uploads/".basename($_FILES['file']['name']);
+		if(!move_uploaded_file($_FILES['file']['tmp_name'], $target_path)){
+			// cant move the file !
+			header("Location: http://localhost/Newspaper_management/admin/sfhasljd.php");
+			die();
+		}
+		else {
+			// Yes!
+			$query=$pdo->prepare("INSERT INTO Files (path, article_id) VALUES (:path, :article_id)");
+			$query->bindValue(':path', $path);
+			$query->bindValue(':article_id', $article_id);
+			$query->execute();
+	
+			header("Location: http://localhost/Newspaper_management/press.php?id={$article_id}");
+			die();
+		}
+	} else {
+		// No file !
+		header("Location: http://localhost/Newspaper_management/admin/add.php");
+		die();
+	}
 
 } else {
 	//some field is missing!

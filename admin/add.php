@@ -30,7 +30,7 @@ if(!isset($_SESSION['login'])) {
 	        <nav>
 	          <ul class="nav nav-pills pull-right">
 	            <li role="presentation"><a href="/Newspaper_management/index.php">Home</a></li>
-	            <li role="presentation" class="active"><a href="/Newspaper_management/admin/panel.php">Panel</a></li>
+	            <li role="presentation"><a href="/Newspaper_management/admin/panel.php">Panel</a></li>
 	          </ul>
 	        </nav>
 	        <h3 class="text-muted">Busni ` <i style='color:#00612C;'>Add Article</i></h3>
@@ -42,7 +42,9 @@ if(!isset($_SESSION['login'])) {
 					<textarea class="input-block-level" id="summernote" name="body" rows="18">
 					</textarea>
 					<div class="form-group">
-						<input type="file" name="file" multiple>
+						<label for="exampleInputFile">File input</label>
+						<input type="file" name="file">
+						<p class="help-block">You can import one file.</p>
 					</div>
 					<div style='text-align:center;margin-bottom:20px;margin-top:5px;'>
 						<button type="submit" class="btn btn-primary">Submit</button>
