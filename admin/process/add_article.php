@@ -8,7 +8,7 @@ if(!isset($_SESSION['login'])) {
 
 // try to connect to the database
 try {
-    $pdo = new PDO('mysql:host=localhost;dbname=app', 'root', '19911991');
+    $pdo = new PDO('mysql:host=localhost;dbname=busni', 'root', '');
 } catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
     die();
@@ -29,11 +29,11 @@ if (isset($_POST['title']) && isset($_POST['body'])){
 
 	// upload file 
 	if(isset($_FILES['file']) && $_FILES['file']['size'] != 0){
-		$target_path  = "/var/www/html/Newspaper_management/admin/uploads/".basename($_FILES['file']['name']);
+		$target_path  = "../uploads/".basename($_FILES['file']['name']);
 		$path = "/Newspaper_management/admin/uploads/".basename($_FILES['file']['name']);
 		if(!move_uploaded_file($_FILES['file']['tmp_name'], $target_path)){
 			// cant move the file !
-			header("Location: http://localhost/Newspaper_management/admin/sfhasljd.php");
+			header("Location: http://localhost/Newspaper_management/index.php");
 			die();
 		}
 		else {

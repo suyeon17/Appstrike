@@ -52,7 +52,7 @@ if(!isset($_SESSION['login'])) {
 				</form>
 			
 	      <footer class="footer">
-	        <p>App &copy; 2015</p>
+	        <p>Busni &copy; 2015</p>
 	      </footer>
 
 	    </div> <!-- /container -->

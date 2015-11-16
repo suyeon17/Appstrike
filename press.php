@@ -14,17 +14,22 @@ if (!isset($_GET['id'])){
 
 // try to connect to the database
 try {
-    $pdo = new PDO('mysql:host=localhost;dbname=app', 'root', '19911991');
+    $pdo = new PDO('mysql:host=localhost;dbname=busni', 'root', '');
 } catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
     die();
 }
-
+$id = $_GET['id'];
 // get article
-$statement = $pdo->prepare("SELECT * from Articles WHERE id=:id LIMIT 1");
-$statement->bindValue(':id', $_GET['id']);
-$statement->execute();
+$statement = $pdo->query("SELECT title,text,date from Articles WHERE id='$id'");
+if (!$statement) {
+   echo "\nPDO::errorInfo():\n";
+   print_r($pdo->errorInfo());
+   die();
+
+}
 $article = $statement->fetch();
+
 
 // get upload
 $statementFile = $pdo->prepare("SELECT * from Files WHERE article_id=:article_id LIMIT 1");
@@ -32,16 +37,11 @@ $statementFile->bindValue(':article_id', $_GET['id']);
 $statementFile->execute();
 $file = $statementFile->fetch();
 
-if ($statement->rowCount() == 0){
-	// id have no article
-	header("Location: http://localhost/Newspaper_management/index.php");
-	die();
-}
 ?>
 
 <html>
 	<head>
-		<title>App</title>
+		<title>Busni</title>
 		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 		<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 		<!-- Latest compiled and minified JavaScript -->
@@ -65,22 +65,23 @@ if ($statement->rowCount() == 0){
 	            <?php } ?>
 	          </ul>
 	        </nav>
-	        <h3 class="text-muted">App ` <i style='color:#00612C;'>Article</i></h3>
+	        <h3 class="text-muted">Busni ` <i style='color:#00612C;'>Article</i></h3>
 	      </div>
 
 			<div class="span8" style="margin-bottom:35px;">
 			    <h1><?php echo $article['title']; ?></h1>
 			    <p><?php echo $article['text']; ?></p>
 			    <?php if($statementFile->rowCount() > 0) { ?><p><a href="<?php echo $file['path']; ?>" target="_blank">A telecharger</a></p><?php } ?>
-			    <div>
+			    
+				<div>
 			        <span class="badge badge-success">Posted <?php echo $article['date']; ?></span><div class="pull-right">
-			        <span class="label"><?php echo $article['login']; ?></span>
+			      
+<!--				  <span class="label"><?php echo $article['login']; ?></span> -->
 			    </div>
 			    </div>
 			</div>     	
-
 			<footer class="footer">
-				<p>App &copy; 2015</p>
+				<p>Busni &copy; 2015</p>
 			</footer>
 
 	    </div> <!-- /container -->
