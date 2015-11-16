@@ -9,7 +9,7 @@ if(isset($_SESSION['login'])) {
 
 <html>
 	<head>
-		<title>Busni</title>
+		<title>App</title>
 		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 		<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 		<!-- Latest compiled and minified JavaScript -->
@@ -30,7 +30,7 @@ if(isset($_SESSION['login'])) {
 	            <li role="presentation" class="active"><a href="/Newspaper_management/admin/login.php">Login</a></li>
 	          </ul>
 	        </nav>
-	        <h3 class="text-muted">Busni ` <i style='color:#00612C;'>Login</i></h3>
+	        <h3 class="text-muted">App ` <i style='color:#00612C;'>Login</i></h3>
 	      </div>
 
 			<section id="login">
@@ -85,7 +85,7 @@ if(isset($_SESSION['login'])) {
 
 
 	      <footer class="footer">
-	        <p>Busni &copy; 2015</p>
+	        <p>App &copy; 2015</p>
 	      </footer>
 
 	    </div> <!-- /container -->

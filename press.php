@@ -41,7 +41,7 @@ if ($statement->rowCount() == 0){
 
 <html>
 	<head>
-		<title>Busni</title>
+		<title>App</title>
 		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 		<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 		<!-- Latest compiled and minified JavaScript -->
@@ -65,7 +65,7 @@ if ($statement->rowCount() == 0){
 	            <?php } ?>
 	          </ul>
 	        </nav>
-	        <h3 class="text-muted">Busni ` <i style='color:#00612C;'>Article</i></h3>
+	        <h3 class="text-muted">App ` <i style='color:#00612C;'>Article</i></h3>
 	      </div>
 
 			<div class="span8" style="margin-bottom:35px;">
@@ -80,7 +80,7 @@ if ($statement->rowCount() == 0){
 			</div>     	
 
 			<footer class="footer">
-				<p>Busni &copy; 2015</p>
+				<p>App &copy; 2015</p>
 			</footer>
 
 	    </div> <!-- /container -->
