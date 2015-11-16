@@ -5,6 +5,7 @@ if(!isset($_SESSION['login'])) {
 	header("Location: http://localhost/Newspaper_management/admin/login.php");
 	die();
 }
+?>
 
 <?php
 $filename='database_backup_'.date('G_a_m_d_y').'.sql';
