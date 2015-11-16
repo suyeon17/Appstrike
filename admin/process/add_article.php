@@ -28,7 +28,7 @@ if (isset($_POST['title']) && isset($_POST['body'])){
 	$article_id = $pdo->lastInsertId();
 
 	// upload file 
-	if(isset($_FILES['file'])) {
+	if(isset($_FILES['file']) && $_FILES['file']['size'] != 0){
 		$target_path  = "/var/www/html/Newspaper_management/admin/uploads/".basename($_FILES['file']['name']);
 		$path = "/Newspaper_management/admin/uploads/".basename($_FILES['file']['name']);
 		if(!move_uploaded_file($_FILES['file']['tmp_name'], $target_path)){
@@ -48,7 +48,7 @@ if (isset($_POST['title']) && isset($_POST['body'])){
 		}
 	} else {
 		// No file !
-		header("Location: http://localhost/Newspaper_management/admin/add.php");
+		header("Location: http://localhost/Newspaper_management/press.php?id={$article_id}");
 		die();
 	}
 
