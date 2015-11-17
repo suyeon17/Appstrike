@@ -10,7 +10,7 @@ if(!isset($_SESSION['login'])) {
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Busni</title>
+		<title>App</title>
 		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 		<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 		<!-- Latest compiled and minified JavaScript -->
@@ -26,6 +26,7 @@ if(!isset($_SESSION['login'])) {
 
 	<body>
 		<div class="container">
+
 	      <div class="header clearfix">
 	        <nav>
 	          <ul class="nav nav-pills pull-right">
@@ -35,6 +36,23 @@ if(!isset($_SESSION['login'])) {
 	        </nav>
 	        <h3 class="text-muted"><del>App</del> ` <i style='color:#00612C;'>Add Article</i></h3>
 	      </div>
+
+	      	<?php
+	      		if ( isset($_GET['msg']) && isset( $_GET['type'] )){ 
+	      			if ( $_GET['type'] == 'danger' ) {
+	      	?>
+
+		      	<div class="notice notice-danger">
+			        <strong>Mistake ` </strong> <?php echo htmlspecialchars($_GET['msg'], ENT_QUOTES, 'UTF-8'); ?>
+			    </div>
+			
+			<?php } else if ($_GET['type'] == 'success') { ?>
+
+				<div class="notice notice-success">
+			        <strong>Success ` </strong> <?php echo htmlspecialchars($_GET['msg'], ENT_QUOTES, 'UTF-8'); ?>
+			    </div>
+
+			<?php } } ?>
 
 				<form class="span12" id="postForm" action="process/add_article.php" method="POST" enctype="multipart/form-data" onsubmit="return postForm()">
 					<input type="text" name="title" class="form-control" placeholder="Title">

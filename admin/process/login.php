@@ -15,6 +15,14 @@ $database = new Database();
 
 // connected, proceed
 if (isset($_POST['login']) && isset($_POST['password'])){
+	
+	// check if inputs are empty
+	if (strlen(trim($_POST['login'])) == 0 || strlen(trim($_POST['password'])) == 0) {
+		// not admin, redirect to login
+		header("Location: http://localhost/Newspaper_management/admin/login.php?type=danger&msg=You Left Something Empty !");
+		die();
+	}
+
 	$login = trim($_POST['login']);
 	$password = trim($_POST['password']);
 	
@@ -27,18 +35,19 @@ if (isset($_POST['login']) && isset($_POST['password'])){
 		//this is admin
 		$admin = $database -> single();
 		$_SESSION['login'] = $admin['login'];
- 		header('location: http://localhost/Newspaper_management/admin/panel.php');
+ 		header('location: http://localhost/Newspaper_management/admin/panel.php?type=success&msg=Welcome, Admin ! :)');
  		exit;
 	}
 	else { 
 		// not admin, redirect to login
-		header("Location: http://localhost/Newspaper_management/admin/login.php");
+		header("Location: http://localhost/Newspaper_management/admin/login.php?type=danger&msg=your input is wrong");
 		die();
 	}
 	
 } else {
-	// missing field or both missing from form
-	echo 'missing field or both missing from form';
+	// not admin, redirect to login
+	header("Location: http://localhost/Newspaper_management/admin/login.php?type=danger&msg=your input is wrong");
+	die();
 }
 
 ?>

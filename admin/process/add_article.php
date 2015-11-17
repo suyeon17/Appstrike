@@ -19,6 +19,13 @@ if (isset($_POST['title']) && isset($_POST['body'])){
 	$title = trim($_POST['title']);
 	$body = trim($_POST['body']);
 
+	// check if inputs are empty
+	if (strlen(trim($_POST['title'])) == 0 || strlen(trim($_POST['body'])) == 0) {
+		// not admin, redirect to login
+		header("Location: http://localhost/Newspaper_management/admin/add.php?type=danger&msg=You Left Something Empty !");
+		die();
+	}
+
 	// add article
 	$database -> query('INSERT INTO Articles (title, text, login, date) VALUES (:title, :body, :login, NOW())');
 	$database -> bind(':title', $title);
@@ -46,7 +53,7 @@ if (isset($_POST['title']) && isset($_POST['body'])){
 			// Can we move the file to the upload folder?
 			if( !move_uploaded_file( $uploaded_tmp, $target_path ) ) {
 				// No
-				header("Location: http://localhost/Newspaper_management/admin/add.php");
+				header("Location: http://localhost/Newspaper_management/admin/add.php?type=danger&msg=We could not move your uploaded file , check your permissions !");
 				die();
 			} else {
 				// Yes!
@@ -60,7 +67,7 @@ if (isset($_POST['title']) && isset($_POST['body'])){
 			}
 		} else {
 				// Invalid file
-				header("Location: http://localhost/Newspaper_management/admin/add.php");
+				header("Location: http://localhost/Newspaper_management/admin/add.php?type=danger&msg=Invalid File for Upload !");
 				die();
 			}
 		} else {
@@ -71,7 +78,7 @@ if (isset($_POST['title']) && isset($_POST['body'])){
 
 } else {
 	//some field is missing!
-	header("Location: http://localhost/Newspaper_management/admin/add.php");
+	header("Location: http://localhost/Newspaper_management/admin/add.php?type=danger&msg=You Left Something Empty !");
 	die();
 }
 

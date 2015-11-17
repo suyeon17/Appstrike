@@ -33,6 +33,23 @@ if(isset($_SESSION['login'])) {
 	        <h3 class="text-muted"><del>App</del> ` <i style='color:#00612C;'>Login</i></h3>
 	      </div>
 
+	      <?php
+	      		if ( isset($_GET['msg']) && isset( $_GET['type'] )){ 
+	      			if ( $_GET['type'] == 'danger' ) {
+	      	?>
+
+		      	<div class="notice notice-danger">
+			        <strong>Mistake ` </strong> <?php echo htmlspecialchars($_GET['msg'], ENT_QUOTES, 'UTF-8'); ?>
+			    </div>
+			
+			<?php } else if ($_GET['type'] == 'success') { ?>
+
+				<div class="notice notice-success">
+			        <strong>Success ` </strong> <?php echo htmlspecialchars($_GET['msg'], ENT_QUOTES, 'UTF-8'); ?>
+			    </div>
+
+			<?php } } ?>
+
 			<section id="login">
 			    <div class="container">
 			    	<div class="row">

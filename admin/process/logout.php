@@ -2,6 +2,6 @@
 	session_start();
 	unset($_SESSION['user_session']);
 	session_destroy();
-	header("Location: http://localhost/Newspaper_management/index.php");
+	header("Location: http://localhost/Newspaper_management/index.php?type=success&msg=Goodbye, Admin :) !");
 	die();
 ?>

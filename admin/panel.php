@@ -36,6 +36,26 @@ if(!isset($_SESSION['login'])) {
 	      </div>
 	    </div>
 
+
+	    <?php
+	      		if ( isset($_GET['msg']) && isset( $_GET['type'] )){ 
+	      			if ( $_GET['type'] == 'danger' ) {
+	      	?>
+	      		<div class="container">
+		      		<div class="notice notice-danger">
+			        	<strong>Mistake ` </strong> <?php echo htmlspecialchars($_GET['msg'], ENT_QUOTES, 'UTF-8'); ?>
+			    	</div>
+				</div>
+			
+			<?php } else if ($_GET['type'] == 'success') { ?>
+				<div class="container">
+					<div class="notice notice-success">
+				        <strong>Success ` </strong> <?php echo htmlspecialchars($_GET['msg'], ENT_QUOTES, 'UTF-8'); ?>
+				    </div>
+				</div>
+
+			<?php } } ?>
+
 		<div class="nocontainer">
 			<div class="row">
 		      <div class="col-md-4 col-md-offset-4">
