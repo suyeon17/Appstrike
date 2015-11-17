@@ -78,7 +78,7 @@ $articles = $database->resultset();
 			</div>
 			
 	      <footer class="footer">
-	        <p><ins><del>App</del></ins> &copy; 2015</p>
+	        <p><ins><del>App</del></ins> &copy; 2015  <span style='float:right;'>HI!</span></p>
 	      </footer>
 
 	    </div> <!-- /container -->
