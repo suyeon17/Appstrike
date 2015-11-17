@@ -15,7 +15,7 @@ try {
 }
 
 // get articles 
-$statement = $pdo->prepare("SELECT * from Articles");
+$statement = $pdo->prepare("SELECT * from Articles ORDER BY id DESC");
 $statement->execute();
 $articles = $statement->fetchAll();
 ?>
