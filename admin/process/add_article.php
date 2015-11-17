@@ -62,7 +62,7 @@ if (isset($_POST['title']) && isset($_POST['body'])){
 				$database -> bind(':article_id', $article_id);
 				$database -> execute();
 				
-				header("Location: http://localhost/Newspaper_management/press.php?id={$article_id}");
+				header("Location: http://localhost/Newspaper_management/press.php?id={$article_id}&type=success&msg=New Article !");
 				die();
 			}
 		} else {
@@ -72,7 +72,7 @@ if (isset($_POST['title']) && isset($_POST['body'])){
 			}
 		} else {
 			// no file
-			header("Location: http://localhost/Newspaper_management/press.php?id={$article_id}");
+			header("Location: http://localhost/Newspaper_management/press.php?id={$article_id}&type=success&msg=New Article !");
 			die();
 		}
 
