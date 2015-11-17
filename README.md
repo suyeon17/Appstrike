@@ -2,7 +2,8 @@
 Bonjour Les amis : 
 Voila les notes principales :
 
-#1-SQL injection : On peut exploiter la faille de sécurité dans le fichier press.php par la téchnique SQL injection .
+#1-SQL injection : 
+On peut exploiter la faille de sécurité dans le fichier press.php par la téchnique SQL injection .
 Ce dernier contient une fonction de test des requetes , si la requetes est fausse , il retourne l'erreur exacte il facilite les choses .
 1-1)Méthode de l'exploitation
 On ajoute après "id= " la ligne suivante : 
