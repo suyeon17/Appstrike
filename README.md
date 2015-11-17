@@ -1,9 +1,9 @@
-# Newspaper_management
+# Application Vulnérable
 Bonjour Les amis : 
 Voila les notes principales :
-1-SQL injection : On peut exploiter la faille de sécurité dans le fichier press.php par la téchnique SQL injection .
-Ce dernier contient une fonction de test des requetes , si la requetes est fausse , il retourne l'erreur exacte il facilite les choses .
 
+#1-SQL injection : On peut exploiter la faille de sécurité dans le fichier press.php par la téchnique SQL injection .
+Ce dernier contient une fonction de test des requetes , si la requetes est fausse , il retourne l'erreur exacte il facilite les choses .
 1-1)Méthode de l'exploitation
 On ajoute après "id= " la ligne suivante : 
 99' UNION select * from users WHERE users.id ='1' AND id>'
@@ -13,8 +13,7 @@ donc si on charge un article qui existe on ne peut pas visualiser le résultat d
 Union : Par contre JOIN qui ajoute les colonnes Union qui ajoute les enregistrements 
 users.id >' : users.id ='1' suffit de récuperer le mot de passse on ajoute id>' pour fermer les '' le fichier va lire id>'' c àd id > 0 .
 ----------------------------------------------------------------------------------------------------------------------------------------------------
-
-2-Upload de fichier : 
+#2-Upload de fichier : 
 
 2-1)Méthode de l'exploitation
 Dans la page add.php on peut charger un fichier php directement ,
@@ -23,9 +22,7 @@ pour que l'exploitation sera efficace , il est préferable de charger un shellWE
 Vous pouver télécharger les shells  à partir de http://www.c99.me/ .ils sont trés trés trés dangereux .
 Avant de tester ça , désactiver l'antivirus de PC .
 ----------------------------------------------------------------------------------------------------------------------------------------------------
-
-3-Brute Forcing 
-
+#3-Brute Forcing 
 3-1)Queleque explications :
 Normalement nous avons récuperer le mot de passe (phase 1) mais ce mot de passe est crypté par le hash MD5
 Donc nous devons le décrypter biensur , pour savoir le mot de passe .
@@ -39,8 +36,7 @@ ce site est connecté avec des serveurs tréééés puissant ,
 comme vous saviez le mot de passe de utilisateur admin est password , j'ai créer un autre utilisateur yassir essayer de trouver son passe
 avec ce site c'est moins d'une seconde .
 ----------------------------------------------------------------------------------------------------------------------------------------------------
-4-Command Excution
-
+#4-Command Excution
 4-1)Queleque explications :
 Cette partie peut fonctionner en windows et on linux aussi , j'ai préparer un fichier de commande zip dans le meme répertoire de fichier backup 
 process/ pour pouvoir executer la commande sous windows et elle fonctionne parfaitement .
@@ -55,9 +51,7 @@ donc on ne peut pas executer la deuxieme instruction
 l'ajout de zip realname est obligatoire car le variable filename n'existe pas  la fin de fichier 
 zip -r ../backups/".$_GET['filename'].".zip ../../../Newspaper_managemen
 ----------------------------------------------------------------------------------------------------------------------------------------------------
-
-5-Observation general :
-
+#5-Observation general :
 Un fichier sql est uploded avec le programme essayer de l'importer à la base de donnée avant de manipuler
 Le nouveau nom de la base de donnée est choisi par akram : app 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
