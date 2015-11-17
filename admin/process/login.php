@@ -6,7 +6,7 @@ session_start();
 
 if(isset($_SESSION['login'])) {
 	// admin online
-	header("Location: http://localhost/Newspaper_management/admin/panel.php");
+	header("Location: http://localhost/Appstrike/admin/panel.php");
 	die();
 }
 
@@ -19,7 +19,7 @@ if (isset($_POST['login']) && isset($_POST['password'])){
 	// check if inputs are empty
 	if (strlen(trim($_POST['login'])) == 0 || strlen(trim($_POST['password'])) == 0) {
 		// not admin, redirect to login
-		header("Location: http://localhost/Newspaper_management/admin/login.php?type=danger&msg=You Left Something Empty !");
+		header("Location: http://localhost/Appstrike/admin/login.php?type=danger&msg=You Left Something Empty !");
 		die();
 	}
 
@@ -35,18 +35,18 @@ if (isset($_POST['login']) && isset($_POST['password'])){
 		//this is admin
 		$admin = $database -> single();
 		$_SESSION['login'] = $admin['login'];
- 		header('location: http://localhost/Newspaper_management/admin/panel.php?type=success&msg=Welcome, Admin ! :)');
+ 		header('location: http://localhost/Appstrike/admin/panel.php?type=success&msg=Welcome, Admin ! :)');
  		exit;
 	}
 	else { 
 		// not admin, redirect to login
-		header("Location: http://localhost/Newspaper_management/admin/login.php?type=danger&msg=your input is wrong");
+		header("Location: http://localhost/Appstrike/admin/login.php?type=danger&msg=your input is wrong");
 		die();
 	}
 	
 } else {
 	// not admin, redirect to login
-	header("Location: http://localhost/Newspaper_management/admin/login.php?type=danger&msg=your input is wrong");
+	header("Location: http://localhost/Appstrike/admin/login.php?type=danger&msg=your input is wrong");
 	die();
 }
 

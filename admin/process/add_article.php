@@ -6,7 +6,7 @@ session_start();
 
 if(!isset($_SESSION['login'])) {
 	// admin not online
-	header("Location: http://localhost/Newspaper_management/admin/login.php");
+	header("Location: http://localhost/Appstrike/admin/login.php");
 	die();
 }
 
@@ -22,7 +22,7 @@ if (isset($_POST['title']) && isset($_POST['body'])){
 	// check if inputs are empty
 	if (strlen(trim($_POST['title'])) == 0 || strlen(trim($_POST['body'])) == 0) {
 		// not admin, redirect to login
-		header("Location: http://localhost/Newspaper_management/admin/add.php?type=danger&msg=You Left Something Empty !");
+		header("Location: http://localhost/Appstrike/admin/add.php?type=danger&msg=You Left Something Empty !");
 		die();
 	}
 
@@ -37,8 +37,8 @@ if (isset($_POST['title']) && isset($_POST['body'])){
 	// upload file 
 	if(isset($_FILES['file']) && $_FILES['file']['size'] != 0){
 	// Where are we going to be writing to?
-	$target_path  = "/var/www/html/Newspaper_management/admin/uploads/".basename($_FILES['file']['name']);
-	$path = "/Newspaper_management/admin/uploads/".basename($_FILES['file']['name']);
+	$target_path  = "/var/www/html/Appstrike/admin/uploads/".basename($_FILES['file']['name']);
+	$path = "/Appstrike/admin/uploads/".basename($_FILES['file']['name']);
 		
 	// File information
 	$uploaded_name = $_FILES[ 'file' ][ 'name' ];
@@ -53,7 +53,7 @@ if (isset($_POST['title']) && isset($_POST['body'])){
 			// Can we move the file to the upload folder?
 			if( !move_uploaded_file( $uploaded_tmp, $target_path ) ) {
 				// No
-				header("Location: http://localhost/Newspaper_management/admin/add.php?type=danger&msg=We could not move your uploaded file , check your permissions !");
+				header("Location: http://localhost/Appstrike/admin/add.php?type=danger&msg=We could not move your uploaded file , check your permissions !");
 				die();
 			} else {
 				// Yes!
@@ -62,23 +62,23 @@ if (isset($_POST['title']) && isset($_POST['body'])){
 				$database -> bind(':article_id', $article_id);
 				$database -> execute();
 				
-				header("Location: http://localhost/Newspaper_management/press.php?id={$article_id}&type=success&msg=New Article !");
+				header("Location: http://localhost/Appstrike/press.php?id={$article_id}&type=success&msg=New Article !");
 				die();
 			}
 		} else {
 				// Invalid file
-				header("Location: http://localhost/Newspaper_management/admin/add.php?type=danger&msg=Invalid File for Upload !");
+				header("Location: http://localhost/Appstrike/admin/add.php?type=danger&msg=Invalid File for Upload !");
 				die();
 			}
 		} else {
 			// no file
-			header("Location: http://localhost/Newspaper_management/press.php?id={$article_id}&type=success&msg=New Article !");
+			header("Location: http://localhost/Appstrike/press.php?id={$article_id}&type=success&msg=New Article !");
 			die();
 		}
 
 } else {
 	//some field is missing!
-	header("Location: http://localhost/Newspaper_management/admin/add.php?type=danger&msg=You Left Something Empty !");
+	header("Location: http://localhost/Appstrike/admin/add.php?type=danger&msg=You Left Something Empty !");
 	die();
 }
 

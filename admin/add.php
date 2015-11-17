@@ -2,7 +2,7 @@
 session_start();
 if(!isset($_SESSION['login'])) {
 	// admin not online
-	header("Location: http://localhost/Newspaper_management/admin/login.php");
+	header("Location: http://localhost/Appstrike/admin/login.php");
 	die();
 }
 ?>
@@ -30,8 +30,8 @@ if(!isset($_SESSION['login'])) {
 	      <div class="header clearfix">
 	        <nav>
 	          <ul class="nav nav-pills pull-right">
-	            <li role="presentation"><a href="/Newspaper_management/index.php">Home</a></li>
-	            <li role="presentation"><a href="/Newspaper_management/admin/panel.php">Panel</a></li>
+	            <li role="presentation"><a href="/Appstrike/index.php">Home</a></li>
+	            <li role="presentation"><a href="/Appstrike/admin/panel.php">Panel</a></li>
 	          </ul>
 	        </nav>
 	        <h3 class="text-muted"><del>App</del> ` <i style='color:#00612C;'>Add Article</i></h3>

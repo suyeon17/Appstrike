@@ -31,11 +31,11 @@ $articles = $database->resultset();
 	      <div class="header clearfix">
 	        <nav>
 	          <ul class="nav nav-pills pull-right">
-	            <li role="presentation" class="active"><a href="/Newspaper_management/index.php">Home</a></li>
+	            <li role="presentation" class="active"><a href="/Appstrike/index.php">Home</a></li>
 	            <?php if (!$online){ ?>
-	            <li role="presentation"><a href="/Newspaper_management/admin/login.php">Login</a></li>
+	            <li role="presentation"><a href="/Appstrike/admin/login.php">Login</a></li>
 	            <?php } else { ?>
-	            <li role="presentation"><a href="/Newspaper_management/admin/panel.php">Panel</a></li>
+	            <li role="presentation"><a href="/Appstrike/admin/panel.php">Panel</a></li>
 	            <?php } ?>
 	          </ul>
 	        </nav>
