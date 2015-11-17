@@ -8,21 +8,21 @@ if(isset($_SESSION['login'])) {
 
 // try to connect to the database
 try {
-    $pdo = new PDO('mysql:host=localhost;dbname=busni', 'root', '');
+    $pdo = new PDO('mysql:host=localhost;dbname=app', 'root', '');
 } catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
     die();
 }
 
 // get articles 
-$statement = $pdo->prepare("SELECT * from Articles");
+$statement = $pdo->prepare("SELECT * from Articles ORDER BY id DESC");
 $statement->execute();
 $articles = $statement->fetchAll();
 ?>
 
 <html>
 	<head>
-		<title>Busni</title>
+		<title>Hack This Press </title>
 		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 		<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 		<!-- Latest compiled and minified JavaScript -->
@@ -46,7 +46,7 @@ $articles = $statement->fetchAll();
 	            <?php } ?>
 	          </ul>
 	        </nav>
-	        <h3 class="text-muted">Busni ` <i style='color:#00612C;'>Articles</i></h3>
+	        <h3 class="text-muted">Hack This Press |<i style='color:#00612C;'>Articles</i></h3>
 	      </div>
 
 			<div class="container">
@@ -69,7 +69,7 @@ $articles = $statement->fetchAll();
 			</div>
 			
 	      <footer class="footer">
-	        <p>Busni &copy; 2015</p>
+	        <p>Hack This Press  &copy; 2015</p>
 	      </footer>
 
 	    </div> <!-- /container -->

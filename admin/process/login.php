@@ -8,7 +8,7 @@ if(isset($_SESSION['login'])) {
 
 // try to connect to the database
 try {
-    $pdo = new PDO('mysql:host=localhost;dbname=busni', 'root', '');
+    $pdo = new PDO('mysql:host=localhost;dbname=app', 'root', '');
 } catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
     die();

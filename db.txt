@@ -1,6 +1,6 @@
 
 -------------------------------------
-CREATE DATABASE busni;
+CREATE DATABASE Hack This Press ;
 
 -------------------------------------
 CREATE TABLE Articles (id INT NOT NULL AUTO_INCREMENT, title VARCHAR(100) NOT NULL, text TEXT NOT NULL, login VARCHAR(40) NOT NULL, date DATE, PRIMARY KEY (id));
@@ -11,4 +11,5 @@ CREATE TABLE Files (id INT NOT NULL AUTO_INCREMENT, path TEXT, article_id INT NO
 
 -------------------------------------
 user used as admin : login = admin , password : password
+
 INSERT INTO Users (login, password) VALUES ('admin', '5f4dcc3b5aa765d61d8327deb882cf99');

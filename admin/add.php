@@ -10,7 +10,7 @@ if(!isset($_SESSION['login'])) {
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Busni</title>
+		<title>Hack This Press </title>
 		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 		<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 		<!-- Latest compiled and minified JavaScript -->
@@ -33,7 +33,7 @@ if(!isset($_SESSION['login'])) {
 	            <li role="presentation"><a href="/Newspaper_management/admin/panel.php">Panel</a></li>
 	          </ul>
 	        </nav>
-	        <h3 class="text-muted">Busni ` <i style='color:#00612C;'>Add Article</i></h3>
+	        <h3 class="text-muted">Hack This Press | <i style='color:#00612C;'>Add Article</i></h3>
 	      </div>
 
 				<form class="span12" id="postForm" action="process/add_article.php" method="POST" enctype="multipart/form-data" onsubmit="return postForm()">
@@ -52,7 +52,7 @@ if(!isset($_SESSION['login'])) {
 				</form>
 			
 	      <footer class="footer">
-	        <p>Busni &copy; 2015</p>
+	        <p>Hack This Press  &copy; 2015</p>
 	      </footer>
 
 	    </div> <!-- /container -->
