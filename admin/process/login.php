@@ -1,47 +1,44 @@
 <?php
+
+require_once('../../backend/pdo.php');
+
 session_start();
+
 if(isset($_SESSION['login'])) {
 	// admin online
 	header("Location: http://localhost/Newspaper_management/admin/panel.php");
 	die();
 }
 
-// try to connect to the database
-try {
-    $pdo = new PDO('mysql:host=localhost;dbname=app', 'root', '19911991');
-} catch (PDOException $e) {
-    print "Error!: " . $e->getMessage() . "<br/>";
-    die();
-}
+// connect 
+$database = new Database();
 
 // connected, proceed
 if (isset($_POST['login']) && isset($_POST['password'])){
 	$login = trim($_POST['login']);
 	$password = trim($_POST['password']);
 	
-	$query=$pdo->prepare("SELECT * FROM Users WHERE login=:login AND password=:password LIMIT 1");
-	$query->bindValue(':login', $login);
-	$query->bindValue(':password', md5($password));
-	$query->execute();
-	$result = $query->fetch();
-	
-	if ($query->rowCount() > 0){
+	// get admin
+	$database -> query('SELECT * FROM Users WHERE login=:login AND password=:password LIMIT 1');
+	$database -> bind(':login', $login);
+	$database -> bind(':password', md5($password));
+	$database -> execute();
+	if ( $database -> rowCount() > 0 ) { 
 		//this is admin
-		$_SESSION['login'] = $result['login'];
+		$admin = $database -> single();
+		$_SESSION['login'] = $admin['login'];
  		header('location: http://localhost/Newspaper_management/admin/panel.php');
  		exit;
-	} else {
+	}
+	else { 
 		// not admin, redirect to login
 		header("Location: http://localhost/Newspaper_management/admin/login.php");
 		die();
 	}
-
+	
 } else {
 	// missing field or both missing from form
 	echo 'missing field or both missing from form';
 }
-
-// unset object after making love with it
-$pdo = null;
 
 ?>

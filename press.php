@@ -1,10 +1,12 @@
 <?php
+
+require_once('backend/pdo.php');
+
 session_start();
-if(isset($_SESSION['login'])) {
-	$online = true;
-} else {
-	$online = false;
-}
+
+// check if user is online or offline
+if ( isset( $_SESSION['login'] ) ) { $online = true; } 
+else { $online = false; }
 
 // no article is selected
 if (!isset($_GET['id'])){
@@ -12,31 +14,23 @@ if (!isset($_GET['id'])){
 	die();
 }
 
-// try to connect to the database
-try {
-    $pdo = new PDO('mysql:host=localhost;dbname=app', 'root', '19911991');
-} catch (PDOException $e) {
-    print "Error!: " . $e->getMessage() . "<br/>";
-    die();
-}
-
 // get article
-$statement = $pdo->prepare("SELECT * from Articles WHERE id=:id LIMIT 1");
-$statement->bindValue(':id', $_GET['id']);
-$statement->execute();
-$article = $statement->fetch();
+$database = new Database();
+$database -> query('SELECT * from Articles WHERE id=:id LIMIT 1');
+$database -> bind(':id', $_GET['id']);
+$database -> execute();
+if ( $database -> rowCount() > 0 ) { $article = $database -> single(); }
+else { 
+	// id not correct 
+	header("Location: http://localhost/Newspaper_management/index.php");
+ 	die();
+}
 
 // get upload
-$statementFile = $pdo->prepare("SELECT * from Files WHERE article_id=:article_id LIMIT 1");
-$statementFile->bindValue(':article_id', $_GET['id']);
-$statementFile->execute();
-$file = $statementFile->fetch();
-
-if ($statement->rowCount() == 0){
-	// id have no article
-	header("Location: http://localhost/Newspaper_management/index.php");
-	die();
-}
+$database->query('SELECT * from Files WHERE article_id=:article_id LIMIT 1');
+$database->bind(':article_id', $_GET['id']);
+$database -> execute();
+if ( $database->rowCount() > 0 ) { $file = $database->single(); }
 ?>
 
 <html>
@@ -65,13 +59,13 @@ if ($statement->rowCount() == 0){
 	            <?php } ?>
 	          </ul>
 	        </nav>
-	        <h3 class="text-muted">App ` <i style='color:#00612C;'>Article</i></h3>
+	        <h3 class="text-muted"><del>App</del> ` <i style='color:#00612C;'>Article</i></h3>
 	      </div>
 
 			<div class="span8" style="margin-bottom:35px;">
 			    <h1><?php echo $article['title']; ?></h1>
 			    <p><?php echo $article['text']; ?></p>
-			    <?php if($statementFile->rowCount() > 0) { ?><p><a href="<?php echo $file['path']; ?>" target="_blank">A telecharger</a></p><?php } ?>
+			    <?php if(isset($file)) { ?><p><a href="<?php echo $file['path']; ?>" target="_blank">A telecharger</a></p><?php } ?>
 			    <div>
 			        <span class="badge badge-success">Posted <?php echo $article['date']; ?></span><div class="pull-right">
 			        <span class="label"><?php echo $article['login']; ?></span>
@@ -80,7 +74,7 @@ if ($statement->rowCount() == 0){
 			</div>     	
 
 			<footer class="footer">
-				<p>App &copy; 2015</p>
+				<p><ins><del>App</del></ins> &copy; 2015</p>
 			</footer>
 
 	    </div> <!-- /container -->

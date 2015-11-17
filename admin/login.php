@@ -30,7 +30,7 @@ if(isset($_SESSION['login'])) {
 	            <li role="presentation" class="active"><a href="/Newspaper_management/admin/login.php">Login</a></li>
 	          </ul>
 	        </nav>
-	        <h3 class="text-muted">App ` <i style='color:#00612C;'>Login</i></h3>
+	        <h3 class="text-muted"><del>App</del> ` <i style='color:#00612C;'>Login</i></h3>
 	      </div>
 
 			<section id="login">
@@ -85,7 +85,7 @@ if(isset($_SESSION['login'])) {
 
 
 	      <footer class="footer">
-	        <p>App &copy; 2015</p>
+	        <p><ins><del>App</del></ins> &copy; 2015</p>
 	      </footer>
 
 	    </div> <!-- /container -->

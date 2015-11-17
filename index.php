@@ -1,23 +1,16 @@
 <?php
+require_once('backend/pdo.php');
+
 session_start();
-if(isset($_SESSION['login'])) {
-	$online = true;
-} else {
-	$online = false;
-}
 
-// try to connect to the database
-try {
-    $pdo = new PDO('mysql:host=localhost;dbname=app', 'root', '19911991');
-} catch (PDOException $e) {
-    print "Error!: " . $e->getMessage() . "<br/>";
-    die();
-}
+// check if user is online or offline
+if ( isset( $_SESSION['login'] ) ) { $online = true; } 
+else { $online = false; }
 
-// get articles 
-$statement = $pdo->prepare("SELECT * from Articles ORDER BY id DESC");
-$statement->execute();
-$articles = $statement->fetchAll();
+// get all articles ordered
+$database = new Database();
+$database->query('SELECT * from Articles ORDER BY date DESC, id DESC');
+$articles = $database->resultset();
 ?>
 
 <html>
@@ -46,7 +39,7 @@ $articles = $statement->fetchAll();
 	            <?php } ?>
 	          </ul>
 	        </nav>
-	        <h3 class="text-muted">App ` <i style='color:#00612C;'>Articles</i></h3>
+	        <h3 class="text-muted"><del>App</del> ` <i style='color:#00612C;'>Articles</i></h3>
 	      </div>
 
 			<div class="container">
@@ -69,7 +62,7 @@ $articles = $statement->fetchAll();
 			</div>
 			
 	      <footer class="footer">
-	        <p>App &copy; 2015</p>
+	        <p><ins><del>App</del></ins> &copy; 2015</p>
 	      </footer>
 
 	    </div> <!-- /container -->

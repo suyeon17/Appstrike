@@ -7,7 +7,6 @@ if(!isset($_SESSION['login'])) {
 }
 ?>
 
-
 <html>
 	<head>
 		<title>App</title>
@@ -33,7 +32,7 @@ if(!isset($_SESSION['login'])) {
 	            <li role="presentation" class="active"><a href="/Newspaper_management/admin/panel.php">Panel</a></li>
 	          </ul>
 	        </nav>
-	        <h3 class="text-muted">App ` <i style='color:#00612C;'>Control Panel</i></h3>
+	        <h3 class="text-muted"><del>App</del> ` <i style='color:#00612C;'>Control Panel</i></h3>
 	      </div>
 	    </div>
 
@@ -74,7 +73,7 @@ if(!isset($_SESSION['login'])) {
 
 		<div class="container">
 			<footer class="footer">
-		        <p>App &copy; 2015</p>
+		        <p><ins><del>App</del></ins> &copy; 2015</p>
 		    </footer>
 	    </div> <!-- /container -->
 

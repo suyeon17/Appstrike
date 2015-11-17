@@ -1,31 +1,31 @@
 <?php
+
+require_once('../../backend/pdo.php');
+
 session_start();
+
 if(!isset($_SESSION['login'])) {
 	// admin not online
 	header("Location: http://localhost/Newspaper_management/admin/login.php");
 	die();
 }
 
-// try to connect to the database
-try {
-    $pdo = new PDO('mysql:host=localhost;dbname=app', 'root', '19911991');
-} catch (PDOException $e) {
-    print "Error!: " . $e->getMessage() . "<br/>";
-    die();
-}
+// connect 
+$database = new Database();
 
 // connected, proceed
 if (isset($_POST['title']) && isset($_POST['body'])){
+	
 	$title = trim($_POST['title']);
 	$body = trim($_POST['body']);
 
-	$query=$pdo->prepare("INSERT INTO Articles (title, text, login, date) VALUES (:title, :body, :login, NOW())");
-	$query->bindValue(':title', $title);
-	$query->bindValue(':body', $body);
-	$query->bindValue(':login', $_SESSION['login']);
-	$query->execute();
-	
-	$article_id = $pdo->lastInsertId();
+	// add article
+	$database -> query('INSERT INTO Articles (title, text, login, date) VALUES (:title, :body, :login, NOW())');
+	$database -> bind(':title', $title);
+	$database -> bind(':body', $body);
+	$database -> bind(':login', $_SESSION['login']);
+	$database -> execute();
+	$article_id = $database -> lastInsertId();
 
 	// upload file 
 	if(isset($_FILES['file']) && $_FILES['file']['size'] != 0){
@@ -48,19 +48,17 @@ if (isset($_POST['title']) && isset($_POST['body'])){
 				// No
 				header("Location: http://localhost/Newspaper_management/admin/add.php");
 				die();
-			}
-			else {
+			} else {
 				// Yes!
-				$query=$pdo->prepare("INSERT INTO Files (path, article_id) VALUES (:path, :article_id)");
-				$query->bindValue(':path', $path);
-				$query->bindValue(':article_id', $article_id);
-				$query->execute();
-		
+				$database -> query('INSERT INTO Files (path, article_id) VALUES (:path, :article_id)');
+				$database -> bind(':path', $path);
+				$database -> bind(':article_id', $article_id);
+				$database -> execute();
+				
 				header("Location: http://localhost/Newspaper_management/press.php?id={$article_id}");
 				die();
 			}
-		}
-		else {
+		} else {
 				// Invalid file
 				header("Location: http://localhost/Newspaper_management/admin/add.php");
 				die();

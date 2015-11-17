@@ -33,7 +33,7 @@ if(!isset($_SESSION['login'])) {
 	            <li role="presentation"><a href="/Newspaper_management/admin/panel.php">Panel</a></li>
 	          </ul>
 	        </nav>
-	        <h3 class="text-muted">Busni ` <i style='color:#00612C;'>Add Article</i></h3>
+	        <h3 class="text-muted"><del>App</del> ` <i style='color:#00612C;'>Add Article</i></h3>
 	      </div>
 
 				<form class="span12" id="postForm" action="process/add_article.php" method="POST" enctype="multipart/form-data" onsubmit="return postForm()">
@@ -52,7 +52,7 @@ if(!isset($_SESSION['login'])) {
 				</form>
 			
 	      <footer class="footer">
-	        <p>App &copy; 2015</p>
+	        <p><ins><del>App</del></ins> &copy; 2015</p>
 	      </footer>
 
 	    </div> <!-- /container -->
