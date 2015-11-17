@@ -1,6 +1,6 @@
 <?php
 
-require_once('backend/pdo.php');
+require_once('classes/pdo.php');
 
 session_start();
 

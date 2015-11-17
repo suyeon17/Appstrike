@@ -1,5 +1,6 @@
 <?php
-require_once('backend/pdo.php');
+
+require_once('classes/pdo.php');
 
 session_start();
 
@@ -11,6 +12,7 @@ else { $online = false; }
 $database = new Database();
 $database->query('SELECT * from Articles ORDER BY date DESC, id DESC');
 $articles = $database->resultset();
+
 ?>
 
 <html>
