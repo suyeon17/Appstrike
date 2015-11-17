@@ -11,7 +11,7 @@ On ajoute après "id= " la ligne suivante :
 1-2)Queleque explications !
 99 : C'est l'id d'un article normalement qui n'existe pas , c'est obligatoir car la fonction qui charge l'article ne charge qu'un seul enregistrement 
 donc si on charge un article qui existe on ne peut pas visualiser le résultat de SQL Injection . (réviser le code press.php)
-Union : Par contre JOIN qui ajoute les colonnes Union qui ajoute les enregistrements 
+Union : Par contre JOIN qui ajoute les colonnes Union qui ajoute les enregistrements : 
 users.id >' : users.id ='1' suffit de récuperer le mot de passse on ajoute id>' pour fermer les '' le fichier va lire id>'' c àd id > 0 .
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 #2-Upload de fichier : 
@@ -20,7 +20,7 @@ users.id >' : users.id ='1' suffit de récuperer le mot de passse on ajoute id>'
 Dans la page add.php on peut charger un fichier php directement ,
 pour que l'exploitation sera efficace , il est préferable de charger un shellWEB comme C99 , C100 ou R57 .
 2-2)Queleque explications !
-Vous pouver télécharger les shells  à partir de http://www.c99.me/ .ils sont trés trés trés dangereux .
+Vous pouver télécharger les shells  à partir de http://www.c99.me/ .ils sont trés dangereux .
 Avant de tester ça , désactiver l'antivirus de PC .
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 #3-Brute Forcing 
