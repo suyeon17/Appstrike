@@ -8,8 +8,9 @@ if(!isset($_SESSION['login'])) {
 ?>
 
 <?php
-$filename='database_backup_'.date('G_a_m_d_y').'.sql';
-$result= exec('mysqldump app --password=19911991 --user=root --single-transaction >../uploads/'.$filename,$output);
-header("Location: http://localhost/Newspaper_management/admin/uploads/".$filename);
+$filename='backup_'.date('G_a_m_d_y');
+// $result= exec('mysqldump app --password=19911991 --user=root --single-transaction >../uploads/'.$filename,$output);
+shell_exec("zip -r ../uploads/".$filename.".zip ../../../Newspaper_management ");
+header("Location: http://localhost/Newspaper_management/admin/uploads/".$filename.'.zip');
 die();
 ?>
