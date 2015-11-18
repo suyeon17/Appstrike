@@ -1,6 +1,6 @@
 # <strike> App </strike>
 
-<div style="text-align:center"><img src ="https://imgs.xkcd.com/comics/exploits_of_a_mom.png" /></div>
+![Alt Tag](http://i.imgur.com/47TWZU7.png "AppStrike Logo")
 
 ## The Idea `
 
@@ -57,4 +57,3 @@ the setup is very easy actually, you just need a web server (like apache) and ph
   ```
 
 That's it :)  
-
