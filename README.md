@@ -1,6 +1,6 @@
-# <strike> App </strike>
-
 ![Alt Tag](http://i.imgur.com/47TWZU7.png "AppStrike Logo")
+
+------
 
 ## The Idea `
 
