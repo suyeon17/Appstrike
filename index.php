@@ -1,8 +1,9 @@
 <?php
 
-require_once('classes/pdo.php');
-
 session_start();
+
+require_once('classes/pdo.php');
+require_once('classes/security.php');
 
 // check if user is online or offline
 if ( isset( $_SESSION['login'] ) ) { $online = true; } 
@@ -12,6 +13,9 @@ else { $online = false; }
 $database = new Database();
 $database->query('SELECT * from Articles ORDER BY date DESC, id DESC');
 $articles = $database->resultset();
+
+// get security object
+$security = new Security();
 
 ?>
 
@@ -60,7 +64,7 @@ $articles = $database->resultset();
 
 			<?php } } ?>
 
-			<div class="container">
+			<div class="container articles_container">
 			    <ul class="timeline">
 
 			    	<?php foreach ($articles as $article) { ?>
@@ -80,7 +84,24 @@ $articles = $database->resultset();
 			</div>
 			
 	      <footer class="footer">
-	        <p><ins><del>App</del></ins> &copy; 2015  <span style='float:right;'>HI!</span></p>
+	        	<ins><del>App</del></ins> &copy; 2015 
+	        	<span id="switch">
+	        		<?php if ($security -> mode == 'high') { ?>
+	        		<form method="POST" action="admin/process/modes.php">
+	        			<input type="hidden" name="level" value="low">
+		        		<button type="submit" class="btn btn-danger btn-lg btn3d">
+		        			<span class="glyphicon glyphicon-off"></span>
+		        		</button>
+	        		</form>
+	        		<?php } else { ?>
+	        		<form method="POST" action="admin/process/modes.php">
+	        			<input type="hidden" name="level" value="high">
+		        		<button type="submit" class="btn btn-success btn-lg btn3d">
+		        			<span class="glyphicon glyphicon-flash"></span>
+		        		</button>
+	        		</form>
+	        		<?php } ?>
+	        	</span>
 	      </footer>
 
 	    </div> <!-- /container -->

@@ -1,12 +1,16 @@
 <?php
 
-require_once('classes/pdo.php');
-
 session_start();
+
+require_once('classes/pdo.php');
+require_once('classes/security.php');
 
 // check if user is online or offline
 if ( isset( $_SESSION['login'] ) ) { $online = true; } 
 else { $online = false; }
+
+// get security object
+$security = new Security();
 
 // no article is selected
 if (!isset($_GET['id'])){
@@ -16,14 +20,31 @@ if (!isset($_GET['id'])){
 
 // get article
 $database = new Database();
-$database -> query('SELECT * from Articles WHERE id=:id LIMIT 1');
-$database -> bind(':id', $_GET['id']);
-$database -> execute();
-if ( $database -> rowCount() > 0 ) { $article = $database -> single(); }
-else { 
-	// id not correct 
-	header("Location: http://localhost/Appstrike/index.php");
- 	die();
+
+if ($security -> mode == 'high'){
+	
+	// do pdo preparation 
+	$database -> query('SELECT * from Articles WHERE id=:id LIMIT 1');
+	$database -> bind(':id', $_GET['id']);
+	$database -> execute();
+	if ( $database -> rowCount() > 0 ) { $article = $database -> single(); }
+	else { 
+		// id not correct 
+		header("Location: http://localhost/Appstrike/index.php");
+	 	die();
+	}
+
+} else if ($security -> mode == 'low') {
+
+	// do query execution directly 
+	$id = $_GET['id'];
+	$statement = $database->dbh->query("SELECT * from Articles WHERE id='$id'");
+	if (!$statement) {
+	   print_r($pdo->errorInfo());
+	   die();
+	}
+	$article = $statement->fetch();
+
 }
 
 // get upload
@@ -31,6 +52,7 @@ $database->query('SELECT * from Files WHERE article_id=:article_id LIMIT 1');
 $database->bind(':article_id', $_GET['id']);
 $database -> execute();
 if ( $database->rowCount() > 0 ) { $file = $database->single(); }
+
 ?>
 
 <html>
@@ -90,7 +112,27 @@ if ( $database->rowCount() > 0 ) { $file = $database->single(); }
 			</div>     	
 
 			<footer class="footer">
-				<p><ins><del>App</del></ins> &copy; 2015</p>
+				
+				<ins><del>App</del></ins> &copy; 2015
+				
+				<span id="switch">
+	        		<?php if ($security -> mode == 'high') { ?>
+	        		<form method="POST" action="admin/process/modes.php">
+	        			<input type="hidden" name="level" value="low">
+		        		<button type="submit" class="btn btn-danger btn-lg btn3d">
+		        			<span class="glyphicon glyphicon-off"></span>
+		        		</button>
+	        		</form>
+	        		<?php } else { ?>
+	        		<form method="POST" action="admin/process/modes.php">
+	        			<input type="hidden" name="level" value="high">
+		        		<button type="submit" class="btn btn-success btn-lg btn3d">
+		        			<span class="glyphicon glyphicon-flash"></span>
+		        		</button>
+	        		</form>
+	        		<?php } ?>
+	        	</span>
+
 			</footer>
 
 	    </div> <!-- /container -->

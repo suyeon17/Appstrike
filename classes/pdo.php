@@ -14,11 +14,11 @@ class Database {
 	private $pass = DB_PASS;
 	private $dbname = DB_NAME;
 
-	private $dbh;
-    private $error;
+	public $dbh;
+    public $error;
 
     // the query 
-    private $stmt;
+    public $stmt;
 
 	public function __construct(){
         // Set DSN

@@ -1,10 +1,18 @@
 <?php
+
 session_start();
+
+require_once('../classes/security.php');
+
 if(isset($_SESSION['login'])) {
 	// admin online
 	header("Location: http://localhost/Appstrike/admin/panel.php");
 	die();
 }
+
+// get security object
+$security = new Security();
+
 ?>
 
 <html>
@@ -102,7 +110,27 @@ if(isset($_SESSION['login'])) {
 
 
 	      <footer class="footer">
-	        <p><ins><del>App</del></ins> &copy; 2015</p>
+	        
+	        <ins><del>App</del></ins> &copy; 2015
+
+	        	<span id="switch">
+	        		<?php if ($security -> mode == 'high') { ?>
+	        		<form method="POST" action="process/modes.php">
+	        			<input type="hidden" name="level" value="low">
+		        		<button type="submit" class="btn btn-danger btn-lg btn3d">
+		        			<span class="glyphicon glyphicon-off"></span>
+		        		</button>
+	        		</form>
+	        		<?php } else { ?>
+	        		<form method="POST" action="process/modes.php">
+	        			<input type="hidden" name="level" value="high">
+		        		<button type="submit" class="btn btn-success btn-lg btn3d">
+		        			<span class="glyphicon glyphicon-flash"></span>
+		        		</button>
+	        		</form>
+	        		<?php } ?>
+	        	</span>
+	      
 	      </footer>
 
 	    </div> <!-- /container -->

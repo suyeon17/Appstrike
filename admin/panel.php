@@ -1,10 +1,18 @@
 <?php
+
 session_start();
+
+require_once('../classes/security.php');
+
 if(!isset($_SESSION['login'])) {
 	// admin not online
 	header("Location: http://localhost/Appstrike/admin/login.php");
 	die();
 }
+
+// get security object
+$security = new Security();
+
 ?>
 
 <html>
@@ -62,7 +70,11 @@ if(!isset($_SESSION['login'])) {
 		        <div class="material-button-anim">
 		          <ul class="list-inline" id="options">
 		            <li class="option">
+		              <?php if ($security -> mode == 'high') { ?>
 		              <a href='process/backup.php'>
+		              <?php } else { ?>
+		              <a href='lowMode_backup.php'>
+		              <?php } ?>
 		              <button class="material-button option1" type="button">
 		                <span class="fa fa-database" aria-hidden="true"></span>
 		              </button>
@@ -93,7 +105,27 @@ if(!isset($_SESSION['login'])) {
 
 		<div class="container">
 			<footer class="footer">
-		        <p><ins><del>App</del></ins> &copy; 2015</p>
+		    
+		        <ins><del>App</del></ins> &copy; 2015
+
+		        <span id="switch">
+	        		<?php if ($security -> mode == 'high') { ?>
+	        		<form method="POST" action="process/modes.php">
+	        			<input type="hidden" name="level" value="low">
+		        		<button type="submit" class="btn btn-danger btn-lg btn3d">
+		        			<span class="glyphicon glyphicon-off"></span>
+		        		</button>
+	        		</form>
+	        		<?php } else { ?>
+	        		<form method="POST" action="process/modes.php">
+	        			<input type="hidden" name="level" value="high">
+		        		<button type="submit" class="btn btn-success btn-lg btn3d">
+		        			<span class="glyphicon glyphicon-flash"></span>
+		        		</button>
+	        		</form>
+	        		<?php } ?>
+	        	</span>
+		    
 		    </footer>
 	    </div> <!-- /container -->
 
