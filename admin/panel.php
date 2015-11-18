@@ -51,14 +51,14 @@ $security = new Security();
 	      	?>
 	      		<div class="container">
 		      		<div class="notice notice-danger">
-			        	<strong>Mistake ` </strong> <?php echo htmlspecialchars($_GET['msg'], ENT_QUOTES, 'UTF-8'); ?>
+			        	<strong>Mistake ` </strong> <?php if ($security -> mode == 'high') { echo htmlspecialchars($_GET['msg'], ENT_QUOTES, 'UTF-8'); } else { echo $_GET['msg']; } ?>
 			    	</div>
 				</div>
 			
 			<?php } else if ($_GET['type'] == 'success') { ?>
 				<div class="container">
 					<div class="notice notice-success">
-				        <strong>Success ` </strong> <?php echo htmlspecialchars($_GET['msg'], ENT_QUOTES, 'UTF-8'); ?>
+				        <strong>Success ` </strong> <?php if ($security -> mode == 'high') { echo htmlspecialchars($_GET['msg'], ENT_QUOTES, 'UTF-8'); } else { echo $_GET['msg']; } ?>
 				    </div>
 				</div>
 

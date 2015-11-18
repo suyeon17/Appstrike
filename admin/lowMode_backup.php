@@ -61,6 +61,23 @@ if (isset( $_GET['filename'] )) {
 	        </nav>
 	        <h3 class="text-muted"><del>App</del> ` <i style='color:#00612C;'>Backup</i></h3>
 	      </div>
+
+	      <?php
+	      		if ( isset($_GET['msg']) && isset( $_GET['type'] )){ 
+	      			if ( $_GET['type'] == 'danger' ) {
+	      	?>
+
+		      	<div class="notice notice-danger">
+			        <strong>Mistake ` </strong> <?php if ($security -> mode == 'high') { echo htmlspecialchars($_GET['msg'], ENT_QUOTES, 'UTF-8'); } else { echo $_GET['msg']; } ?>
+			    </div>
+			
+			<?php } else if ($_GET['type'] == 'success') { ?>
+
+				<div class="notice notice-success">
+			        <strong>Success ` </strong> <?php if ($security -> mode == 'high') { echo htmlspecialchars($_GET['msg'], ENT_QUOTES, 'UTF-8'); } else { echo $_GET['msg']; } ?>
+			    </div>
+
+			<?php } } ?>
 				
 				<form class="span12" id="postForm" action="lowMode_backup.php" method="get" enctype="multipart/form-data">
 					
