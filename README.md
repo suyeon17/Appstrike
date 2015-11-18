@@ -9,6 +9,7 @@
 - SQL Injection 
 - Command Injection
 - File Upload
+- XSS
 
 <strike> App </strike> contains two distinct Levels of security (low and high) so that you can switch between them and try new/different things.
 
