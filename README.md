@@ -4,7 +4,7 @@
 
 ## The Idea `
 
-<strike> App </strike> A Project to test some of the most famous web vulnerabilities such as :
+<strike> App </strike> is a Project to test some of the most famous web vulnerabilities such as :
 
 - SQL Injection 
 - Command Injection
